@@ -7,6 +7,10 @@
 
 https://schun.site
 
+## **Site login:** (for accessing https://schun.site/members/sarah/index.html)
+- Username: sarah
+- Password: dino
+
 ---
 
 ## Server Setup
