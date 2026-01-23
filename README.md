@@ -3,8 +3,7 @@
 ## Team Members
 - Sarah Chun
 
-- **Grader password:** 
-- letmepasspls
+### **Grader password:** letmepasspls
 
 This site is deployed automatically from GitHub to my Digital Ocean server using a bare Git repository and a post-receive hook.
 
