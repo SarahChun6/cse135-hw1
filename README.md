@@ -5,6 +5,8 @@
 
 ## **Grader password:** letmepasspls
 
+https://schun.site
+
 ---
 
 ## Server Setup
