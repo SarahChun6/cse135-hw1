@@ -5,11 +5,10 @@
 
 ## **Grader password:** letmepasspls
 
-This site is deployed automatically from GitHub to my Digital Ocean server using a bare Git repository and a post-receive hook.
-
 ---
 
 ## Server Setup
+This site is deployed automatically from GitHub to my Digital Ocean server using a bare Git repository and a post-receive hook.
 
 - **Bare repository:** `/var/repo/cse135-hw1.git`  
   - This repo cannot be edited directly; it only stores Git objects.
@@ -34,7 +33,8 @@ rm -rf "$TARGET"/*
 # Checkout latest main branch
 git --work-tree="$TARGET" --git-dir="$GIT_DIR" checkout -f main
 
-echo "Deployment finished."
+echo "Deployment finished." 
+```
 
 ## Step 5: Compress Textual Content
 
