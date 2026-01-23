@@ -3,7 +3,7 @@
 ## Team Members
 - Sarah Chun
 
-### **Grader password:** letmepasspls
+## **Grader password:** letmepasspls
 
 This site is deployed automatically from GitHub to my Digital Ocean server using a bare Git repository and a post-receive hook.
 
@@ -35,3 +35,11 @@ rm -rf "$TARGET"/*
 git --work-tree="$TARGET" --git-dir="$GIT_DIR" checkout -f main
 
 echo "Deployment finished."
+
+## Step 5: Compress Textual Content
+
+After enabling gzip compression on the server, the HTML file was served with the header `Content-Encoding: gzip`. The transferred size in DevTools was smaller than the original file size, showing that compression reduced the amount of data sent without affecting the page display.
+
+## Step 6: Obscure server identity 
+
+I tried `mod_headers` using `Header always set Server "CSE135 Server"` but could not get it to work past `Server: Apache`, which I learned was due to patches in the latest versions of Apache based on a StackExchange forum. Eventually I used `mod_security2` with `SecRuleEngine On` and `SecServerSignature "CSE135 Server"` and it worked.
