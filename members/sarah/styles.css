@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+:root {
+  --header-background-color: #483D8B;
+  --body-background-color: #6A5ACD;
+  --sidebar-background-color: #7B68EE;
+  --icon-color: white;
+  --text-color: white;
+  --font-primary: 'Poppins', Arial, sans-serif;
+}
+
+html {
+  font-size: 16px;
+}
+
+hgroup{
+  padding: 1rem 1rem;
+}
+
+header hgroup h1, h3 {
+    padding: 0; 
+    margin: 0;
+}
+
+@scope (nav) {
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+  ul li {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    transition: font-size 0.3s ease-in-out;
+  }
+  ul li a:hover {
+    font-size: 120%;
+  }
+}
+
+@scope (address) {
+  i {
+    margin-right: 0.5rem;
+    color: var(--icon-color);
+  }
+  a {
+    padding-right: 0.625rem;
+  }
+}
+
+a {
+  color: color-mix(in display-p3, var(--text-color) 90%, var(--header-background-color) 10%);
+}
+
+* a:hover {
+  color: color-mix(in display-p3, var(--text-color) 80%, var(--header-background-color) 20%);
+}
+
+body {
+  font-family: var(--font-primary);
+  display: flex;
+  flex-direction: column;
+  min-height: 95vh;
+  min-height: 95dvh; /* viewport height */
+  background-color: var(--body-background-color); /**/
+  transition: background-color 0.3s ease-in-out; /**/
+}
+
+/* Header and Footer */
+header, footer {
+  background: color-mix(in display-p3, var(--header-background-color) 90%, var(--text-color) 10%);
+  color: var(--text-color);
+  text-align: center;
+  padding: 1rem;
+  animation: fadeIn 1s ease-in-out; /**/
+}
+
+/* Main Container */
+main {
+  display: flex;
+  flex-direction: row;
+  flex: 1; /* Takes up all available space */
+  flex-wrap: wrap;
+  color: var(--text-color);
+}
+
+#form{
+  display: flex;
+  justify-content: center;
+}
+
+#message {
+  width: 95%;
+}
+
+#bio {
+  display: flex;
+  flex: 2; /* Takes more space in the center */
+  align-items: center; /* Aligns bio content vertically */
+  justify-content: space-between; /* Ensures image and text stay separate */
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: linear-gradient(
+    to right,
+    color(display-p3 0.2 0.2 0.2),
+    color-mix(in display-p3, var(--header-background-color) 80%, var(--text-color) 20%)
+  );
+}
+
+#left-bio {
+  display: flex;
+  flex-direction: column; /* Stacks the heading and image */
+  align-items: center;
+}
+
+#right-bio {
+  flex: 1; /* Text takes available space */
+}
+
+/* Sidebars */
+.sidebar {
+  flex: 1; /* Equal width sidebars */
+  padding: 1.25rem;
+  max-width: 95vw;
+  max-width: 95dvw;
+  background: #ddd; 
+  background: color-mix(in display-p3, var(--header-background-color) 70%, var(--text-color) 30%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar:hover {
+  transform: scale(1.05);
+}
+
+button {
+    background: var(--header-background-color);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: color-mix(in display-p3, var(--header-background-color) 80%, var(--text-color) 20%);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Centers images in the section */
+  align-items: center;
+  gap: 15px; /* Adds space between images */
+  flex-wrap: wrap; /* Ensures wrapping on small screens */
+}
+
+.image-container img {
+  width: auto; /* Maintains original width */
+  height: 200px; /* Maintains aspect ratio */
+}
+
+.project-card {
+  width: 250px; /* Set a fixed width */
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--header-background-color);
+  text-align: center;
+}
+
+#projects-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping to next line if needed */
+  justify-content: center; /* Centers cards horizontally */
+  gap: 16px; /* Adds space between cards */
+  padding: 16px;
+}
+
+/* Force Light Mode When `data-theme="light"` */
+[data-theme="light"] {
+  --header-background-color: color(display-p3 0.6 0.8 1); /* Light sky blue */
+  --body-background-color: color(display-p3 0.85 0.85 0.85); /* Light gray */
+  --sidebar-background-color: color(display-p3 0.95 0.95 0.95); /* Very light gray */
+  --icon-color: color(display-p3 0 0 0); /* Black */
+  --text-color: color(display-p3 0.1 0.1 0.1); /* Dark gray */
+}
+
+/* Force Dark Mode When `data-theme="dark"` */
+[data-theme="dark"] {
+  --header-background-color: color(display-p3 0.098 0.098 0.439); /* Midnight Purple */
+  --body-background-color: color(display-p3 0.12 0.12 0.12); /* Dark gray */
+  --sidebar-background-color: color(display-p3 0.25 0.25 0.25); /* Medium gray */
+  --icon-color: color(display-p3 1 1 1); /* Pure white */
+  --text-color: color(display-p3 0.9 0.9 0.9); /* Light grayish white */
+}
+
+.error-message {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  color: red;
+  font-size: xx-small;
+}
+
+.error {
+  animation: flash 0.5s;
+}
+
+@keyframes flash {
+  0% { background-color: #ffcccc; }
+  100% { background-color: transparent; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* New Selectors */
+section:has(img) {
+  border: 2px solid var(--text-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    flex: none;
+    width: 90%;
+  }
+}
+
+@media (prefers-color-scheme: dark) { 
+  :root:not([data-theme]){
+    --header-background-color: color(display-p3 0.098 0.098 0.439); /* Midnight Purple */
+    --body-background-color: color(display-p3 0.12 0.12 0.12); /* Dark gray */
+    --sidebar-background-color: color(display-p3 0.25 0.25 0.25); /* Medium gray */
+    --icon-color: color(display-p3 1 1 1); /* Pure white */
+    --text-color: color(display-p3 0.9 0.9 0.9); /* Light grayish white */
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]){
+    --header-background-color: color(display-p3 0.6 0.8 1); /* Light sky blue */
+    --body-background-color: color(display-p3 0.85 0.85 0.85); /* Light gray */
+    --sidebar-background-color: color(display-p3 0.95 0.95 0.95); /* Very light gray */
+    --icon-color: color(display-p3 0 0 0); /* Black */
+    --text-color: color(display-p3 0.1 0.1 0.1); /* Dark gray */
+  }
+}
+

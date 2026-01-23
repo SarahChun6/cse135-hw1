@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="https://schun-portfolio.netlify.app/files/favicon.ico">
+
+  <title>Contact Me!</title>
+  <noscript>
+    <style>
+      #theme-toggle {
+        display: none;
+      }
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <header>  
+    <h1>Contact Me!</h1> 
+    <button id="theme-toggle">🌙</button> <!-- aria-label="Toggle Theme"-->
+  </header>
+
+  <main id="form">
+    <form action="https://httpbin.org/post" method="POST">
+      <input type="hidden" name="possible_bot" value="true">
+      <fieldset class="sidebar">
+        <legend>Personal Information</legend>
+        <label>Name*
+          <input type="text" id="your-name" name="your-name" pattern="[A-Za-z '\-]+" maxlength="50" required autofocus>
+          <span class="error-message" id="name-error"></span>
+        </label>
+        <br>
+        <label>Email*
+          <input type="email" id="your-email" name="your-email" maxlength="50" required>
+          <span class="error-message" id="email-error"></span>
+        </label>
+        <p>Please fill out both <kbd>name</kbd> and <kbd>email</kbd> fields before submitting.</p>
+        <br>
+        <label>Occupation*
+          <select name="occupation" id="occupation">
+            <option value="recruiter">Recruiter</option>
+            <option value="soft-engineer">Software Engineer</option>
+        
+            <optgroup label="Student">
+              <option value="high-school">High School</option>
+              <option value="college">College</option>
+              <option value="other-student">Other</option>
+            </optgroup>
+        
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <br>
+        <label>Location
+          <input list="cities" id="city" name="city">
+          <datalist id="cities">
+            <option value="New York">
+            <option value="San Diego">
+            <option value="San Jose">
+            <option value="San Francisco">
+            <option value="Los Angeles">
+            <option value="Chicago">
+            <option value="Houston">
+            <option value="Phoenix">
+          </datalist>
+        </label>
+        <br>
+      </fieldset>
+  
+      <fieldset class="sidebar">
+        <legend>Other</legend>
+        <label>Message<br>
+          <textarea id="message" name="message" rows="5" maxlength="500"></textarea>
+          <span id="char-count" style="color:black;">Characters remaining: 500</span> 
+        </label>
+      </fieldset>
+
+      <input type="hidden" id="form-errors" name="form-errors" value="">
+  
+      <button type="submit">Send</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>Thank you for getting in touch!</p>
+    <p><a href="index.html">Back to Home</a></p>
+  </footer>
+
+  <script src="script.js" defer></script>
+
+</body>
+</html>

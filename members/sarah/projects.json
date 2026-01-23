@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Poker",
+        "image": "projectPictures/poker1.png",
+        "description": "Used a doubly linked list to store the 52 cards to be drawn from randomly.",
+        "link": "projects/pokerProject.html"
+    },
+    {
+        "name": "Billards",
+        "image": "projectPictures/billards1.png",
+        "description": "Used socket programming to allow for an interative multiplayer billards game animated based on physics principles.",
+        "link": "projects/billardsProject.html"
+    },
+    {
+        "name": "Submarine Shooter",
+        "image": "projectPictures/subShooter1.png",
+        "description": "Two player underwater themed shooter game.",
+        "link": "projects/subShooter.html"
+    },
+    {
+        "name": "Pixel Art Canvas",
+        "image": "projectPictures/pixelArt1.png",
+        "description": "Used a stack data structure to keep track of paint actions.",
+        "link": "projects/pixelArt.html"
+    }
+]
