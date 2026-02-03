@@ -1,24 +1,16 @@
 <?php
 session_start();
-session_unset();
 session_destroy();
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>State Cleared</title>
+    <title>State Demo - Cleared</title>
 </head>
 <body>
+<h1>All session data cleared!</h1>
 
-<h1>Session Cleared</h1>
-
-<p>The saved data has been removed.</p>
-
-<p>
-    <a href="state-form.html">Start Over</a>
-</p>
-
+<p><a href="state-form.html">Back to Form</a></p>
+<p><a href="state-view.php">View Saved Data</a></p>
 </body>
 </html>

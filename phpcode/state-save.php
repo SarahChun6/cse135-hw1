@@ -1,33 +1,45 @@
 <?php
 session_start();
 
-// Save incoming data into session
-$_SESSION['username'] = $_POST['username'] ?? '';
-$_SESSION['password'] = $_POST['password'] ?? '';
-$_SESSION['saved_at'] = date('r');
-?>
+// Ensure the submissions array exists
+if (!isset($_SESSION['submissions'])) {
+    $_SESSION['submissions'] = [];
+}
 
+// Save new submission
+if (isset($_POST['field1']) || isset($_POST['field2'])) {
+    $_SESSION['submissions'][] = [
+        'field1' => $_POST['field1'] ?? '',
+        'field2' => $_POST['field2'] ?? '',
+        'saved_at' => date('Y-m-d H:i:s')
+    ];
+}
+
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>State Saved</title>
+    <title>State Demo - Saved</title>
 </head>
 <body>
+<h1>Data Saved!</h1>
 
-<h1>Data Saved</h1>
+<p><a href="state-view.php">View All Saved Data</a></p>
+<p><a href="state-form.html">Back to Form</a></p>
+<p><a href="state-clear.php">Clear All Data</a></p>
 
-<p>Your data has been stored on the server.</p>
-
-<ul>
-    <li>Username: <?= htmlspecialchars($_SESSION['username']) ?></li>
-    <li>Password: <?= htmlspecialchars($_SESSION['password']) ?></li>
-    <li>Saved at: <?= $_SESSION['saved_at'] ?></li>
-</ul>
-
-<p>
-    <a href="state-view.php">View Saved Data</a>
-</p>
-
+<h2>Most Recent Submission</h2>
+<?php
+$last = end($_SESSION['submissions']);
+if ($last) {
+    echo "<ul>";
+    echo "<li>Field 1: " . htmlspecialchars($last['field1']) . "</li>";
+    echo "<li>Field 2: " . htmlspecialchars($last['field2']) . "</li>";
+    echo "<li>Saved At: " . $last['saved_at'] . "</li>";
+    echo "</ul>";
+} else {
+    echo "<p>No submissions yet.</p>";
+}
+?>
 </body>
 </html>
