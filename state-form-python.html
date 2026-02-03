@@ -6,17 +6,16 @@
 </head>
 <body>
 
-<h1>Session State Demo - Python</h1>
+<h1>Python Session State Demo</h1>
 
 <nav>
-  <a href="?action=save">Save Form Data</a> |
-  <a href="?action=view">View Saved Data</a> |
-  <a href="?action=clear" onclick="return confirm('Are you sure you want to clear all sessions?')">Clear All Sessions</a>
+  <a href="/cgi-bin/python/session-form.py?action=save">Save Form Data</a> |
+  <a href="/cgi-bin/python/session-form.py?action=view">View Saved Data</a> |
+  <a href="/cgi-bin/python/session-form.py?action=clear" onclick="return confirm('Are you sure you want to clear all sessions?')">Clear All Sessions</a>
 </nav>
-
 <hr>
 
-<form action="/cgi-bin/python/session-form.py?action=save" method="post">
+<form id="sessionForm" action="/cgi-bin/python/session-form.py?action=save" method="post">
     <label>
         Field 1:
         <input type="text" name="field1">
@@ -30,9 +29,27 @@
     <button type="submit">Save Data</button>
 </form>
 
-<p>
-    <a href="/cgi-bin/python/session-form.py?action=view">View Saved Data</a>
-</p>
+<h2>Response:</h2>
+<pre id="responseOutput">No response yet.</pre>
+
+<script>
+const form = document.getElementById('sessionForm');
+const output = document.getElementById('responseOutput');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const params = new URLSearchParams();
+    data.forEach((v,k) => params.append(k,v));
+
+    const resp = await fetch(form.action, {
+        method: 'POST',
+        body: params
+    });
+    const text = await resp.text();
+    output.textContent = text;
+});
+</script>
 
 </body>
 </html>
