@@ -51,48 +51,65 @@
 <pre id="responseOutput">No response yet.</pre>
 
 <script>
-docdocument.getElementById('echoForm').addEventListener('submit', function(e){
-    e.preventDefault();
+    const form = document.getElementById('echoForm');
+    const output = document.getElementById('responseOutput');
 
-    const language = document.getElementById('language').value;
-    const method = document.getElementById('method').value;
-    const encoding = document.getElementById('encoding').value;
-    const field1 = document.getElementById('field1').value;
-    const field2 = document.getElementById('field2').value;
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    // Determine endpoint based on language
-    let endpoint = '';
-    if (language === 'php') endpoint = '/phpcode/echo-php.php';
-    else if (language === 'nodejs') endpoint = '/cgi-bin/nodejs/echo-nodejs.js';
-    else if (language === 'go') endpoint = '/cgi-bin/go/echo-go';
+        const language = document.getElementById('language').value;
+        const method = document.getElementById('method').value;
+        const encoding = document.getElementById('encoding').value;
+        const field1 = document.getElementById('field1').value;
+        const field2 = document.getElementById('field2').value;
 
-    // Prepare headers & body
-    let headers = {};
-    let body = null;
+        // Determine endpoint based on language
+        let endpoint = '';
+        if (language === 'php') endpoint = '/phpcode/echo-php.php';
+        else if (language === 'nodejs') endpoint = '/cgi-bin/nodejs/echo-nodejs.js';
+        else if (language === 'go') endpoint = '/cgi-bin/go/echo-go';
 
-    if (method === 'GET' || method === 'DELETE') {
-        // Add fields to query string
-        const params = new URLSearchParams({ field1, field2, _method: method, _encoding: encoding });
-        fetch(endpoint + '?' + params.toString(), { method })
-            .then(r => r.text())
-            .then(txt => document.getElementById('responseOutput').textContent = txt)
-            .catch(err => document.getElementById('responseOutput').textContent = err);
-    } else {
-        // POST or PUT
-        if (encoding === 'application/json') {
-            headers['Content-Type'] = 'application/json';
-            body = JSON.stringify({ field1, field2, _method: method, _encoding: encoding });
+        // Prepare headers & body
+        let headers = {};
+        let body = null;
+
+        if (method === 'GET' || method === 'DELETE') {
+            // Add fields to query string
+            const params = new URLSearchParams({ 
+                field1: form.field1.value,
+                field2: form.field2.value,
+                _method: method,
+                _encoding: encoding });
+                fetch(endpoint + '?' + params.toString(), { method })
+                    .then(r => r.text())
+                    .then(txt => output.textContent = txt)
+                    .catch(err => output.textContent = err);
         } else {
-            headers['Content-Type'] = 'application/x-www-form-urlencoded';
-            body = new URLSearchParams({ field1, field2, _method: method, _encoding: encoding });
-        }
+            // POST or PUT
+            if (encoding === 'application/json') {
+                headers['Content-Type'] = 'application/json';
+                body = JSON.stringify({ 
+                    field1: form.field1.value, 
+                    field2: form.field2.value,
+                    _method: method,
+                    _encoding: encoding 
+                });
+            } else {
+                headers['Content-Type'] = 'application/x-www-form-urlencoded';
+                body = new URLSearchParams({ 
+                    field1: form.field1.value, 
+                    field2: form.field2.value, 
+                    _method: method, 
+                    _encoding: encoding 
+                });
+            }
 
-        fetch(endpoint, { method, headers, body })
-            .then(r => r.text())
-            .then(txt => document.getElementById('responseOutput').textContent = txt)
-            .catch(err => document.getElementById('responseOutput').textContent = err);
-    }
-});
+            fetch(endpoint, { method, headers, body })
+                .then(r => r.text())
+                .then(txt => output.textContent = txt)
+                .catch(err => output.textContent = err);
+        }
+    });
 </script>
 
 </body>
