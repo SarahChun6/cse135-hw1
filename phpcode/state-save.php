@@ -25,7 +25,7 @@ if (isset($_POST['field1']) || isset($_POST['field2'])) {
 <h1>Data Saved!</h1>
 
 <p><a href="state-view.php">View All Saved Data</a></p>
-<p><a href="../state-form.html">Back to Form</a></p>
+<p><a href="../state-form-php.html">Back to Form</a></p>
 <p><a href="state-clear.php">Clear All Data</a></p>
 
 <h2>Most Recent Submission</h2>
