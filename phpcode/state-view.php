@@ -9,7 +9,7 @@ session_start();
 <body>
 <h1>All Saved Submissions</h1>
 
-<p><a href="state-form.html">Back to Form</a></p>
+<p><a href="../state-form.html">Back to Form</a></p>
 <p><a href="state-clear.php">Clear All Data</a></p>
 
 <?php
