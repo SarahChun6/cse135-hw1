@@ -3,25 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Echo Form</title>
-<script>
-function getEndpoint(lang) {
-    switch(lang) {
-        case "php": return "/phpcode/echo-php.php";
-        case "nodejs": return "/cgi-bin/nodejs/echo-nodejs.js";
-        case "go": return "/cgi-bin/go/echo-go";
-    }
-    return "#";
-}
-function updateFormAction() {
-    const lang = document.getElementById("language").value;
-    document.getElementById("echoForm").action = getEndpoint(lang);
-}
-</script>
 </head>
 <body>
 <h1>Echo Form</h1>
 
-<form id="echoForm" method="POST" onsubmit="updateFormAction()">
+<form id="echoForm"> <!-- method="POST" onsubmit="updateFormAction()"-->
     <!-- Language selection -->
     <label for="language">Language:</label>
     <select id="language" name="language" onchange="updateFormAction()">
@@ -65,61 +51,47 @@ function updateFormAction() {
 <pre id="responseOutput">No response yet.</pre>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('echoForm');
-  const output = document.getElementById('responseOutput');
+docdocument.getElementById('echoForm').addEventListener('submit', function(e){
+    e.preventDefault();
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault(); // prevent default submit
-
-    const endpoint = getEndpoint(document.getElementById('language').value);
+    const language = document.getElementById('language').value;
     const method = document.getElementById('method').value;
     const encoding = document.getElementById('encoding').value;
+    const field1 = document.getElementById('field1').value;
+    const field2 = document.getElementById('field2').value;
 
+    // Determine endpoint based on language
+    let endpoint = '';
+    if (language === 'php') endpoint = '/phpcode/echo-php.php';
+    else if (language === 'nodejs') endpoint = '/cgi-bin/nodejs/echo-nodejs.js';
+    else if (language === 'go') endpoint = '/cgi-bin/go/echo-go';
+
+    // Prepare headers & body
     let headers = {};
     let body = null;
 
     if (method === 'GET' || method === 'DELETE') {
-      // append fields as query string for GET/DELETE
-      const params = new URLSearchParams({
-        field1: form.field1.value,
-        field2: form.field2.value,
-        _method: method,
-        _encoding: encoding,
-        language: lang
-      });
-      fetch(endpoint + '?' + params.toString(), { method })
-        .then(res => res.text())
-        .then(text => output.textContent = text)
-        .catch(err => output.textContent = err);
+        // Add fields to query string
+        const params = new URLSearchParams({ field1, field2, _method: method, _encoding: encoding });
+        fetch(endpoint + '?' + params.toString(), { method })
+            .then(r => r.text())
+            .then(txt => document.getElementById('responseOutput').textContent = txt)
+            .catch(err => document.getElementById('responseOutput').textContent = err);
     } else {
-      // POST or PUT
-      if (encoding === 'application/json') {
-        headers['Content-Type'] = 'application/json';
-        body = JSON.stringify({
-          field1: form.field1.value,
-          field2: form.field2.value,
-          _method: method,
-          _encoding: encoding,
-          language: lang 
-        });
-      } else {
-        headers['Content-Type'] = 'application/x-www-form-urlencoded';
-        body = new URLSearchParams({
-          field1: form.field1.value,
-          field2: form.field2.value,
-          _method: method,
-          _encoding: encoding,
-          language: lang
-        });
-      }
+        // POST or PUT
+        if (encoding === 'application/json') {
+            headers['Content-Type'] = 'application/json';
+            body = JSON.stringify({ field1, field2, _method: method, _encoding: encoding });
+        } else {
+            headers['Content-Type'] = 'application/x-www-form-urlencoded';
+            body = new URLSearchParams({ field1, field2, _method: method, _encoding: encoding });
+        }
 
-      fetch(endpoint, { method, headers, body })
-        .then(res => res.text())
-        .then(text => output.textContent = text)
-        .catch(err => output.textContent = err);
+        fetch(endpoint, { method, headers, body })
+            .then(r => r.text())
+            .then(txt => document.getElementById('responseOutput').textContent = txt)
+            .catch(err => document.getElementById('responseOutput').textContent = err);
     }
-  });
 });
 </script>
 
@@ -128,5 +100,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- Optional: fallback for no JS -->
 <noscript>
-<p>JavaScript is off. The form will submit via POST to the selected language endpoint.</p>
+<p>JavaScript is off. Form functionality may be limited.</p>
 </noscript>
