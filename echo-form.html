@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Echo Form</title>
+<script>
+function updateFormAction() {
+    const lang = document.getElementById("language").value;
+    let endpoint = "";
+    switch(lang) {
+        case "php":
+            endpoint = "/echo/echo-php.php"; 
+            break;
+        case "nodejs":
+            endpoint = "/cgi-bin/nodejs/echo-nodejs.js";
+            break;
+        case "go":
+            endpoint = "/cgi-bin/go/echo-go"; // adjust path
+            break;
+    }
+    document.getElementById("echoForm").action = endpoint;
+}
+</script>
+</head>
+<body>
+<h1>Echo Form</h1>
+
+<form id="echoForm" method="POST" onsubmit="updateFormAction()">
+    <!-- Language selection -->
+    <label for="language">Language:</label>
+    <select id="language" name="language" onchange="updateFormAction()">
+        <option value="php">PHP</option>
+        <option value="nodejs">NodeJS</option>
+        <option value="go">Go</option>
+    </select>
+    <br><br>
+
+    <!-- HTTP method -->
+    <label for="method">HTTP Method:</label>
+    <select id="method" name="_method">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+        <option value="PUT">PUT</option>
+        <option value="DELETE">DELETE</option>
+    </select>
+    <br><br>
+
+    <!-- Encoding -->
+    <label for="encoding">Encoding:</label>
+    <select id="encoding" name="_encoding">
+        <option value="application/x-www-form-urlencoded">x-www-form-urlencoded</option>
+        <option value="application/json">application/json</option>
+    </select>
+    <br><br>
+
+    <!-- Data fields -->
+    <label for="field1">Field 1:</label>
+    <input type="text" id="field1" name="field1">
+    <br><br>
+
+    <label for="field2">Field 2:</label>
+    <input type="text" id="field2" name="field2">
+    <br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Optional: fallback for no JS -->
+<noscript>
+<p>JavaScript is off. Make sure to manually set the
