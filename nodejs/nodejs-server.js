@@ -11,24 +11,24 @@ const server = http.createServer((req, res) => {
     // Set default headers
     res.setHeader('Cache-Control', 'no-cache');
 
-    if (path === '/nodejs/hello-html') {
+    if (path === '/nodejs/hello-html-nodejs') {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         const date = new Date();
         const ip = req.socket.remoteAddress;
         res.end(`<html><head><title>Hello HTML</title></head><body>
-        <h1>Hello HTML NodeJS</h1>
+        <h1>Hello HTML NodeJS from Sarah</h1>
         <p>Date: ${date}</p>
         <p>Your IP: ${ip}</p>
         </body></html>`);
     } 
-    else if (path === '/nodejs/hello-json') {
+    else if (path === '/nodejs/hello-json-nodejs') {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         const date = new Date();
         const ip = req.socket.remoteAddress;
         const message = { title: "Hello JSON", date, ip };
         res.end(JSON.stringify(message));
     } 
-    else if (path === '/nodejs/env') {
+    else if (path === '/nodejs/environment-nodejs') {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write('<html><head><title>Env Vars</title></head><body>');
         res.write('<h1>Environment Variables</h1><hr>');
