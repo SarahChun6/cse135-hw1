@@ -2,8 +2,8 @@
 session_start();
 
 // Save incoming data into session
-$_SESSION['field1'] = $_POST['field1'] ?? '';
-$_SESSION['field2'] = $_POST['field2'] ?? '';
+$_SESSION['username'] = $_POST['username'] ?? '';
+$_SESSION['password'] = $_POST['password'] ?? '';
 $_SESSION['saved_at'] = date('r');
 ?>
 
@@ -20,8 +20,8 @@ $_SESSION['saved_at'] = date('r');
 <p>Your data has been stored on the server.</p>
 
 <ul>
-    <li>Field 1: <?= htmlspecialchars($_SESSION['field1']) ?></li>
-    <li>Field 2: <?= htmlspecialchars($_SESSION['field2']) ?></li>
+    <li>Username: <?= htmlspecialchars($_SESSION['username']) ?></li>
+    <li>Password: <?= htmlspecialchars($_SESSION['password']) ?></li>
     <li>Saved at: <?= $_SESSION['saved_at'] ?></li>
 </ul>
 

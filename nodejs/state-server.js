@@ -14,15 +14,15 @@ app.use(session({
 
 // SAVE
 app.post("/state/save", (req, res) => {
-  req.session.field1 = req.body.field1 || "";
-  req.session.field2 = req.body.field2 || "";
+  req.session.username = req.body.username || "";
+  req.session.password = req.body.password || "";
   req.session.savedAt = new Date().toUTCString();
 
   res.send(`
     <h1>Data Saved (NodeJS)</h1>
     <ul>
-      <li>Field 1: ${req.session.field1}</li>
-      <li>Field 2: ${req.session.field2}</li>
+      <li>Username: ${req.session.username}</li>
+      <li>Password: ${req.session.password}</li>
       <li>Saved at: ${req.session.savedAt}</li>
     </ul>
     <a href="/state/view">View Saved Data</a>
@@ -34,8 +34,8 @@ app.get("/state/view", (req, res) => {
   res.send(`
     <h1>Saved State (NodeJS)</h1>
     <ul>
-      <li>Field 1: ${req.session.field1 || "None"}</li>
-      <li>Field 2: ${req.session.field2 || "None"}</li>
+      <li>Username: ${req.session.username || "None"}</li>
+      <li>Password: ${req.session.password || "None"}</li>
       <li>Saved at: ${req.session.savedAt || "N/A"}</li>
     </ul>
     <a href="/state/clear">Clear Data</a>
