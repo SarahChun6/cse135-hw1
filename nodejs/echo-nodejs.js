@@ -1,63 +1,69 @@
 #!/usr/bin/env node
 
-// Manual CGI style NodeJS
+// ======================
+// NodeJS CGI Echo Script
+// ======================
 
-// Import required modules
-const querystring = require('querystring');
+// Print headers first
+console.log("Cache-Control: no-cache");
+console.log("Content-Type: application/json\n");
 
-// Get environment variables
-const method = process.env.REQUEST_METHOD || 'UNKNOWN';
+// Helper to parse URL-encoded string into object
+function parseQuery(qs) {
+  const params = {};
+  qs.split("&").forEach(pair => {
+    if (!pair) return;
+    const [key, value] = pair.split("=");
+    params[key] = decodeURIComponent(value || '');
+  });
+  return params;
+}
+
+// Get request method and client info
+const method = process.env.REQUEST_METHOD || 'GET';
 const ip = process.env.REMOTE_ADDR || 'Unknown';
 const agent = process.env.HTTP_USER_AGENT || 'Unknown';
 const date = new Date().toUTCString();
 
-// Helper to parse x-www-form-urlencoded
-function parseFormData(data) {
-    return querystring.parse(data);
-}
+// Initialize data object
+let data_received = {};
 
-// Read POST/PUT/DELETE body if exists
-let inputData = '';
-
-if (method === 'POST' || method === 'PUT' || method === 'DELETE') {
-    const contentLength = parseInt(process.env.CONTENT_LENGTH || 0, 10);
-    if (contentLength > 0) {
-        let buffer = Buffer.alloc(contentLength);
-        let bytesRead = 0;
-        while (bytesRead < contentLength) {
-            bytesRead += process.stdin.read(buffer, bytesRead, contentLength - bytesRead) || 0;
-        }
-        inputData = buffer.toString();
-    }
-} else if (method === 'GET') {
-    inputData = process.env.QUERY_STRING || '';
-}
-
-// Parse input based on content type
-let data = {};
-const contentType = process.env.CONTENT_TYPE || '';
-if (contentType.includes("application/json")) {
-    try {
-        data = JSON.parse(inputData);
-    } catch (e) {
-        data = { error: "Invalid JSON" };
-    }
+// Parse input depending on method
+if (method === 'GET' || method === 'DELETE') {
+  const query = process.env.QUERY_STRING || '';
+  data_received = parseQuery(query);
 } else {
-    data = parseFormData(inputData);
+  // POST or PUT
+  const contentType = process.env.CONTENT_TYPE || '';
+  let rawInput = '';
+  try {
+    // Read stdin for POST/PUT data
+    const fs = require('fs');
+    const fd = 0; // stdin
+    rawInput = fs.readFileSync(fd, 'utf-8');
+  } catch (e) {
+    rawInput = '';
+  }
+
+  if (contentType.includes('application/json')) {
+    try {
+      data_received = JSON.parse(rawInput);
+    } catch (e) {
+      data_received = {};
+    }
+  } else {
+    data_received = parseQuery(rawInput);
+  }
 }
 
-// Build JSON response
+// Build response
 const response = {
-    method: method,
-    ip: ip,
-    user_agent: agent,
-    date: date,
-    data_received: data
+  method,
+  ip,
+  user_agent: agent,
+  date,
+  data_received
 };
 
-// Output CGI headers
-console.log("Cache-Control: no-cache");
-console.log("Content-Type: application/json\n");
-
-// Send JSON
+// Output JSON
 console.log(JSON.stringify(response, null, 2));
