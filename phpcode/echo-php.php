@@ -19,15 +19,13 @@ $data = [];
 $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
 $rawInput = file_get_contents("php://input");
 
-if ($method === 'GET' || $method === 'DELETE') {
-    $data_received = $_GET;
+if (stripos($contentType, "application/json") !== false) {
+    $data = json_decode($rawInput, true) ?? [];
 } else {
-    // POST or PUT
-    if (stripos($content_type, 'application/json') !== false) {
-        $json = file_get_contents("php://input");
-        $data_received = json_decode($json, true);
+    if ($method === "GET") {
+        $data = $_GET;
     } else {
-        $data_received = $_POST;
+        parse_str($rawInput, $data);
     }
 }
 
