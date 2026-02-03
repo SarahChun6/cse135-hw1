@@ -4,31 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSE135</title>
+  <style>
+    .languages {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      padding: 0;
+    }
+    .languages > li {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      width: 220px;
+    }
+    .languages ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .languages h3 {
+      text-align: center;
+    }
+  </style>
 </head>
-
-<style>
-  .languages {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    padding: 0;
-  }
-
-  .languages > li {
-    border: 1px solid #ccc;
-    padding: 1rem;
-    width: 220px;
-  }
-
-  .languages ul {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  .languages h3 {
-    text-align: center;
-  }
-</style>
 
 <body>
   <main>
@@ -51,8 +47,7 @@
 
     <section id="hw2">
       <h2>Homework 2</h2>
-      <h3><a href="echo-form.html">Echo Form</a></h3>
-      <ul>
+      <ul class="languages">
         <li>
           <h3>Perl</h3>
           <ul>
