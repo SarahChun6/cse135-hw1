@@ -8,7 +8,15 @@
 
 <h1>Session State Demo - Python</h1>
 
-<form action="/cgi-bin/python/session-form.py" method="post">
+<nav>
+  <a href="?action=save">Save Form Data</a> |
+  <a href="?action=view">View Saved Data</a> |
+  <a href="?action=clear" onclick="return confirm('Are you sure you want to clear all sessions?')">Clear All Sessions</a>
+</nav>
+
+<hr>
+
+<form action="/cgi-bin/python/session-form.py?action=save" method="post">
     <label>
         Field 1:
         <input type="text" name="field1">
@@ -23,7 +31,7 @@
 </form>
 
 <p>
-    <a href="/cgi-bin/python/session-form.py">View Saved Data</a>
+    <a href="/cgi-bin/python/session-form.py?action=view">View Saved Data</a>
 </p>
 
 </body>
