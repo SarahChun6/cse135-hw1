@@ -5,6 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSE135</title>
 </head>
+
+<style>
+  .languages {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .languages > li {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    width: 220px;
+  }
+
+  .languages ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .languages h3 {
+    text-align: center;
+  }
+</style>
+
 <body>
   <main>
     <h1>CSE135</h1>
@@ -28,43 +53,51 @@
       <h2>Homework 2</h2>
       <h3><a href="echo-form.html">Echo Form</a></h3>
       <ul>
-        <h3>Perl</h3>
-        <ul>
-          <li><a href="/cgi-bin/perlcode/perl-hello-html-world.pl">Hello, Perl!</a></li>
-          <li><a href="/cgi-bin/perlcode/perl-hello-json-world.pl">Hello, Perl! (JSON)</a></li>
-          <li><a href="/cgi-bin/perlcode/perl-env-pm.pl">Environment Variables</a></li>
-          <li><a href="/cgi-bin/perlcode/perl-get-echo.pl">GET Echo</a></li>
-          <li><a href="/cgi-bin/perlcode/perl-post-echo.pl">POST Echo</a></li>
-          <li><a href="/cgi-bin/perlcode/perl-general-echo.pl">General Echo</a></li>
-          <li><a href="/cgi-bin/perlcode/perl-sessions-1.pl">Sessioning</a></li>
-        </ul>
-        <h3>Php</h3>
-        <ul>
-          <li><a href="/phpcode/hello-html-php.php">Hello, Php!</a></li>
-          <li><a href="/phpcode/hello-json-php.php">Hello, Phpl! (JSON)</a></li>
-          <li><a href="/phpcode/environment-php.php">Environment Variables</a></li>
-          <a href="echo-form.html">Echo Form</a>
-          <!-- <li><a href="/phpcode/echo-php.php">Echo</a></li> -->
-          <li><a href="state-form-php.html">Sessioning</a></li>
-        </ul>
-        <h3>NodeJS</h3>
-        <ul>
-          <li><a href="/cgi-bin/nodejs/hello-html-nodejs.js">Hello, NodeJS!</a></li>
-          <li><a href="/cgi-bin/nodejs/hello-json-nodejs.js">Hello, NodeJS! (JSON)</a></li>
-          <li><a href="/cgi-bin/nodejs/environment-nodejs.js">Environment Variables</a></li>
-          <a href="echo-form.html">Echo Form</a>
-          <!-- <li><a href="/cgi-bin/nodejs/echo-nodejs.js">Echo</a></li> -->
-          <li><a href="state-form-nodejs.html">Sessioning</a></li>
-        </ul>
-        <h3>Python</h3>
-        <ul>
-          <li><a href="/cgi-bin/python/hello-html.py">Hello, Python!</a></li>
-          <li><a href="/cgi-bin/python/hello-json.py">Hello, Python! (JSON)</a></li>
-          <li><a href="/cgi-bin/python/environment.py">Environment Variables</a></li>
-          <a href="echo-form.html">Echo Form</a>
-          <!-- <li><a href="/cgi-bin/nodejs/echo-nodejs.js">Echo</a></li> -->
-          <li><a href="state-form-python.html">Sessioning</a></li>
-        </ul>
+        <li>
+          <h3>Perl</h3>
+          <ul>
+            <li><a href="/cgi-bin/perlcode/perl-hello-html-world.pl">Hello, Perl!</a></li>
+            <li><a href="/cgi-bin/perlcode/perl-hello-json-world.pl">Hello, Perl! (JSON)</a></li>
+            <li><a href="/cgi-bin/perlcode/perl-env-pm.pl">Environment Variables</a></li>
+            <li><a href="/cgi-bin/perlcode/perl-get-echo.pl">GET Echo</a></li>
+            <li><a href="/cgi-bin/perlcode/perl-post-echo.pl">POST Echo</a></li>
+            <li><a href="/cgi-bin/perlcode/perl-general-echo.pl">General Echo</a></li>
+            <li><a href="/cgi-bin/perlcode/perl-sessions-1.pl">Sessioning</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Php</h3>
+          <ul>
+            <li><a href="/phpcode/hello-html-php.php">Hello, Php!</a></li>
+            <li><a href="/phpcode/hello-json-php.php">Hello, Phpl! (JSON)</a></li>
+            <li><a href="/phpcode/environment-php.php">Environment Variables</a></li>
+            <a href="echo-form.html">Echo Form</a>
+            <!-- <li><a href="/phpcode/echo-php.php">Echo</a></li> -->
+            <li><a href="state-form-php.html">Sessioning</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>NodeJS</h3>
+          <ul>
+            <li><a href="/cgi-bin/nodejs/hello-html-nodejs.js">Hello, NodeJS!</a></li>
+            <li><a href="/cgi-bin/nodejs/hello-json-nodejs.js">Hello, NodeJS! (JSON)</a></li>
+            <li><a href="/cgi-bin/nodejs/environment-nodejs.js">Environment Variables</a></li>
+            <a href="echo-form.html">Echo Form</a>
+            <!-- <li><a href="/cgi-bin/nodejs/echo-nodejs.js">Echo</a></li> -->
+            <li><a href="state-form-nodejs.html">Sessioning</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Python</h3>
+          <ul>
+            <li><a href="/cgi-bin/python/hello-html.py">Hello, Python!</a></li>
+            <li><a href="/cgi-bin/python/hello-json.py">Hello, Python! (JSON)</a></li>
+            <li><a href="/cgi-bin/python/environment.py">Environment Variables</a></li>
+            <a href="echo-form.html">Echo Form</a>
+            <!-- <li><a href="/cgi-bin/nodejs/echo-nodejs.js">Echo</a></li> -->
+            <li><a href="state-form-python.html">Sessioning</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
 
