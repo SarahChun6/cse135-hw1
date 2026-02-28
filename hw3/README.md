@@ -17,7 +17,7 @@ https://collector.schun.site (same html page from hw1 but hosting new hw3 script
 ## Collector.js Modifications Beyond the CSE135 Tutorial
 Key Changes:
 - Started from Module 7 – Version 6 of the collector.
-  - Retained built-in error tracking support for more robust client-side logging.
+  - Retained built-in error tracking, page lifecycle events (e.g. enter, exit, visibility change), and session tracking with generated session IDs. 
   - Simplified the getNavigationTiming() logic to reduce payload size and focus only on relevant navigation timing fields.
   - Removed web vitals reporting and resource summary aggregation to make the payload smaller and more readable.
 - Added additional behavioral events to capture richer interaction data:
@@ -52,5 +52,5 @@ The reporting-server.js file implements the REST API for the reporting vhost (re
 - That port is served by reporting-server.js
 - If Node is not running --> Apache returns 503 Service Unavailable
 
-To start the reporting server: `node reporting-server.js`
+To start the reporting server call `node reporting-server.js` from the command line.
 This must be running in the background for Part 5 REST endpoints to function properly.
