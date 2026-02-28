@@ -5,6 +5,9 @@
 
 ## **Grader password:** letmepasspls
 
+## Server IP Address: 138.68.9.238
+No ssh key should be needed
+
 https://schun.site    
 https://test.schun.site    
 https://collector.schun.site (same html page from hw1 but hosting new hw3 script collector.js)   
