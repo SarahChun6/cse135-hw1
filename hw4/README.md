@@ -3,11 +3,11 @@ Site URL: https://test.schun.site/index.html
 Login page: https://reporting.schun.site/login.php     
 Protected reporting dashboard: https://reporting.schun.site/reports.php      
 
-*Notes:* To start the reporting server call `node reporting-server.js` from the command line. This must be running in the background for the datastore to be connected.
+**Notes:** To start the reporting server call `node reporting-server.js` from the command line. This must be running in the background for the datastore to be connected.
 And to record new events, start the collection server by calling `node collector-server.js` from the command line and interacting with the wrecked-tech site at https://test.schun.site/index.html
 
 ### Grader Login Credentials
-username: admin
+username: admin     
 password: pw
 
 ## Part 1 - Authentication System
