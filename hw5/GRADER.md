@@ -7,7 +7,7 @@ This document provides login credentials and a recommended scenario for testing 
 # Deployment
 
 Reporting Dashboard:
-https://reporting.schun.site
+https://reporting.schun.site/login.php
 
 Test Analytics Site:
 https://test.schun.site
