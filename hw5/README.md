@@ -12,7 +12,7 @@ Analytics collection site:
 https://test.schun.site
 
 Reporting dashboard:
-https://reporting.schun.site
+https://reporting.schun.site/login.php
 
 Collector endpoint:
 https://collector.schun.site
