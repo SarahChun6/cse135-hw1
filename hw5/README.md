@@ -16,6 +16,7 @@ https://reporting.schun.site/login.php
 
 Collector endpoint:
 https://collector.schun.site
+Note: need to run `nodejs collector-server.js` for data collection to happen
 
 ---
 
